@@ -1,0 +1,242 @@
+/* ✅ Full Page Layout */
+.welcome-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ✅ Profile Button - Top Right (With Username) */
+.profile-round {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between username & profile button */
+}
+
+/* ✅ Username Styling */
+.username-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(12, 12, 12);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+/* ✅ Fully Round Profile Button */
+.profile-button {
+    width: 40px;
+    height: 40px;
+    background-color: #2400d7; /* Lighter Purple */
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    transition: transform 0.2s, box-shadow 0.3s ease-in-out;
+}
+
+/* ✅ Hover Effect */
+.profile-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ✅ Left Side - Image */
+.left-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3; /* Light Grey */
+}
+
+.left-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ✅ Right Side - Welcome Message & Cards */
+.right-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #00b4d8, #3a86ff, #ff006e, #8e44ad); /* Lighter gradient */
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* ✅ Welcome Text Styling */
+.welcome-text-container {
+    position: absolute;
+    top: 0%;
+    left: 53%;
+    transform: translateX(-50%);
+    text-align: center;
+    white-space: nowrap;
+    z-index: 100;
+}
+
+.welcome-text {
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(8, 8, 8);
+    background: transparent;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* ✅ Cards Container */
+.card-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ✅ Card Styling */
+.card {
+    background: #ffffff;
+    color: #000;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 250px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.card h2 {
+    color: black;  /* White background ho to black use karein */
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 10; /* Ensure it appears above the image */
+}
+
+/* ✅ Card Hover Effect */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Image Styling for Cards */
+.card-image {
+    width: 50%;
+    height: 90px; /* ✅ Fixed height */
+    object-fit: cover; /* ✅ Maintain aspect ratio */
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* ✅ Hover effect - Image Zoom */
+.card:hover .card-image {
+    transform: scale(1.05);
+}
+
+/* ✅ Vote Now Button */
+.vote-button {
+    background-color: #68d391; /* Lighter Green */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+.vote-button:hover {
+    background-color: #4caf50; /* Darker Green */
+}
+
+/* ✅ Register Button */
+.register-button {
+    background-color: #6fbaf9; /* Light Blue */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+.register-button:hover {
+    background-color: #1f78d1; /* Darker Blue */
+}
+
+/* ✅ View Results Button */
+.results-button {
+    background-color: #f28b82; /* Soft Red */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+.results-button:hover {
+    background-color: #d64545; /* Darker Red */
+}
+
+
+/* ✅ Mobile Responsive */
+@media (max-width: 768px) {
+    .welcome-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-container {
+        width: 100%;
+        height: 250px;
+    }
+
+    .right-container {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .welcome-text {
+        font-size: 24px;
+        padding: 10px 15px;
+    }
+
+    .card {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    /* ✅ Smaller Profile Button on Mobile */
+    .profile-button {
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+    }
+
+    .profile-round {
+        top: 5px;
+        right: 5px;
+    }
+}

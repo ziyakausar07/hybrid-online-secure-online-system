@@ -1,0 +1,106 @@
+/* Full page background gradient animation */
+.register-page {
+  position: relative;
+  height: 100vh;
+}
+
+.background-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #4a90e2, #9b59b6, #e91e63);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  z-index: -1; /* Ensures background is behind the content */
+  filter: blur(10px); /* Background blur effect */
+}
+
+/* Keyframe for smooth gradient transition */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Centering the form container */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  z-index: 1;
+  backdrop-filter: blur(10px); /* Blur effect behind form */
+}
+
+/* Styling the form */
+.register-form {
+  background: rgb(249, 247, 247); /* Light transparent background */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  backdrop-filter: blur(15px); /* Glassmorphism effect for form */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.register-form p {
+  font-size: 16px;
+  color: #070707;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-form input,
+.register-form select,
+.register-form button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.register-form input:focus,
+.register-form select:focus,
+.register-form button:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.register-form button {
+  background-color: #4a90e2;
+  color: rgb(4, 4, 4);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-form button:hover {
+  background-color: #357ab7;
+}
+
+.register-form select {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.register-form input::placeholder {
+  color: #aaa;
+}
+
+.register-form select option {
+  color: black;
+}

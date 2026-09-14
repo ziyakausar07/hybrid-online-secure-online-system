@@ -1,0 +1,115 @@
+/* Main Container Styling */
+.profile-container {
+    height: auto;
+    left: auto;
+    width: 100%;
+    max-width: 400px;/* Adjust height dynamically */
+    top: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column; /* Center align everything */
+    justify-content: left;
+    margin: auto; /* Center on page */
+    -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+/* Heading Styling */
+h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Make form elements full width */
+.profile-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-details label {
+    align-self: flex-start; /* Align labels left */
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+}
+
+.profile-details input {
+    display: block;
+    width: 100%; /* Full width input */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+
+/* Disabled input styling */
+.profile-details input:disabled {
+    background-color: #f9f9f9;
+}
+
+/* Button Styling */
+button {
+    z-index: 1000;  /* Ensure button is above other elements */
+  pointer-events: auto; /* Ensure click works */
+  position: relative; /* Ensure it is above any absolute/relative elements */
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Ensure buttons take full width */
+    margin-top: 10px; /* Add spacing between buttons */
+}
+
+/* Edit button */
+.edit-btn {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+/* Save button */
+.save-btn {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+/* Change password button */
+.change-pass-btn {
+    background-color: #2196f3;
+    color: #fff;
+    font-size: 1rem;
+    margin-top: 20px; /* Spacing from form */
+}
+
+/* Hover effect for buttons */
+button:hover {
+    opacity: 0.9;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .profile-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-details input {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+}

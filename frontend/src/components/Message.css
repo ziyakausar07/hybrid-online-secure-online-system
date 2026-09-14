@@ -1,0 +1,40 @@
+.message-container {
+    display: flex;
+    flex-direction: column;  /* Aligns items in a single column */
+    justify-content: flex-start; /* Aligns items at the top */
+    align-items: flex-start; /* Aligns items to the left */
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap; /* Allows boxes to wrap if screen is too small */
+    gap: 15px; /* Adds space between the message boxes */
+    padding: 20px; /* Adds padding around the container */
+  }
+  
+  .message-box {
+    padding: 15px 25px;
+    background: radial-gradient(circle at top left, #B3D9F1, #A2C9E8, transparent 60%),
+                radial-gradient(circle at bottom right, #D0E7F9, #B2D8F6, transparent 60%),
+                linear-gradient(135deg, #B8D8EB, #A7C8E5, #D6F1F9);
+    color: rgb(14, 13, 13);
+    text-align: left;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px; /* Space between boxes */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Allow the box to be responsive */
+    max-width: 1400px; /* Set a max-width to make the boxes more manageable */
+    height: auto; /* Height will adjust based on content */
+  }
+  
+  .message-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .message-box:active {
+    transform: scale(1);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  

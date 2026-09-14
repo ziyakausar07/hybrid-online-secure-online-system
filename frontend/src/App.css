@@ -1,0 +1,127 @@
+/* App.css */
+
+/* Apply the background gradient */
+body, html {
+  /* Left Side: Background Image */
+  background-image: url('./assets/vote.jpg'), linear-gradient(135deg, #00b4d8, #3a86ff, #ff006e, #8e44ad);
+  
+  /* Background Positioning */
+  background-size: 50% 100%, 50% 100%;  /* Image and gradient will take 50% width each */
+  background-position: left, right;  /* Image on left, gradient on right */
+  background-repeat: no-repeat, no-repeat;
+
+  /* General Styling */
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+}
+
+/* Background Image Styling */
+/* Right-align welcome text */
+.welcome-text {
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  text-align: right;
+  max-width: 40%;
+}
+
+/* Smooth gradient animation */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Center content and make sure it covers full screen */
+.App-header {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); /* Enhanced text shadow for better visibility */
+}
+
+
+/* Styling for the navigation links (buttons) */
+nav {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  display: flex;
+  gap: 1rem;
+}
+
+nav .px-4 {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Light shadow to give some depth */
+}
+
+/* New Gradient Background for Register Button */
+nav .bg-blue-600 {
+  background: linear-gradient(135deg, #00b4d8, #3a86ff, #ff006e); /* Blue to Purple to Pink Gradient */
+}
+
+/* New Gradient Background for Login Button */
+nav .bg-green-600 {
+  background: linear-gradient(135deg, #f9d423, #ff4e50); /* Yellow to Red Gradient */
+}
+
+/* Hover Effect for Register Button */
+nav .hover\:bg-blue-700:hover {
+  background: linear-gradient(135deg, #3a86ff, #ff006e, #00b4d8); /* Inverse gradient for hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+  transform: scale(1.1); /* Slight scale-up effect */
+}
+
+/* Hover Effect for Login Button */
+nav .hover\:bg-green-700:hover {
+  background: linear-gradient(135deg, #ff4e50, #f9d423); /* Inverse gradient for hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+  transform: scale(1.1); /* Slight scale-up effect */
+}
+
+/* Style for the links (buttons) on hover with slight scaling effect */
+nav a:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.1); /* Larger scaling effect for a more interactive feel */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow for better highlighted effect */
+}
+
+/* App-link styling */
+.App-link {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+/* Mobile-friendly design: Ensuring good responsiveness */
+@media (max-width: 768px) {
+  .App-header {
+    font-size: 1.2rem;
+  }
+
+  nav {
+    top: 10%;
+    right: 10%;
+  }
+
+  nav a {
+    padding: 0.4rem 0.8rem;
+  }
+}

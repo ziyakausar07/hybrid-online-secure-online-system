@@ -1,0 +1,77 @@
+{
+  "tasks": [
+    {
+      "id": "001-modernize-java-backend-security",
+      "type": "upgrade",
+      "description": "Harden the Java backend, externalize database configuration, and secure servlet/JWT handling.",
+      "requirements": "Replace hardcoded Oracle connection strings and credentials with environment-based config, remove duplicate Maven dependencies, and tighten session and JWT validation.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "java-backend-security-hardening", "location": "builtin" }
+      ],
+      "successCriteria": { "passBuild": "true", "passSecurityScan": "true" }
+    },
+    {
+      "id": "002-modernize-node-api-security",
+      "type": "upgrade",
+      "description": "Secure the Node.js API gateway by externalizing secrets, enforcing CORS, applying helmet/rate limiting, and strengthening JWT middleware.",
+      "requirements": "Replace hardcoded backend URLs and secret strings with environment variables, add request validation, and block invalid or expired JWTs.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "nodejs-api-security-hardening", "location": "builtin" }
+      ],
+      "successCriteria": { "passBuild": "true", "passSecurityScan": "true" }
+    },
+    {
+      "id": "003-modernize-react-frontend-configuration",
+      "type": "upgrade",
+      "description": "Modernize the React frontend by removing hardcoded API/WS endpoints and centralizing runtime configuration.",
+      "requirements": "Use environment-configured base URLs for API and WebSocket calls, remove hardcoded localhost dependencies, and improve client-side auth handling.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "react-frontend-configuration", "location": "builtin" }
+      ],
+      "successCriteria": { "passBuild": "true", "passIntegrationSmokeTest": "true" }
+    },
+    {
+      "id": "004-centralize-runtime-environment-and-secrets",
+      "type": "transform",
+      "description": "Centralize configuration and secrets across Java, Node, and frontend components using environment variables.",
+      "requirements": "Add .env examples, remove secrets from source, document runtime configuration, and ensure all services read secrets from config rather than code.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "configuration-and-secrets-centralization", "location": "builtin" }
+      ],
+      "successCriteria": { "environmentVariablesConfigured": "true", "noHardcodedSecrets": "true" }
+    },
+    {
+      "id": "005-clean-and-stabilize-build-dependencies",
+      "type": "transform",
+      "description": "Clean Maven and npm dependency configurations, remove duplicates, and stabilize build scripts.",
+      "requirements": "Fix Maven plugin versions, remove invalid package.json file references, upgrade outdated dependencies, and ensure project builds reproducibly.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "dependency-and-build-cleanup", "location": "builtin" }
+      ],
+      "successCriteria": { "passBuild": "true", "dependencyAudit": "clean" }
+    },
+    {
+      "id": "006-prepare-production-deployment",
+      "type": "upgrade",
+      "description": "Prepare the application for professional deployment by adding production-ready configuration, deployment guidance, and containerization readiness.",
+      "requirements": "Define production environment variables, add deployment readiness documentation, and ensure the app can be deployed without localhost-specific settings.",
+      "environmentConfiguration": null,
+      "skills": [
+        { "name": "deployment-readiness", "location": "builtin" }
+      ],
+      "successCriteria": { "productionConfigReady": "true", "deploymentDocumentationProvided": "true" }
+    }
+  ],
+  "metadata": {
+    "language": "java",
+    "planName": "Full Stack Modernization for Hybrid Secure Voting System",
+    "projectName": "Hybrid Secure Voting System",
+    "createdAt": "2026-05-28T00:00:00Z",
+    "version": "1.0"
+  }
+}

@@ -1,0 +1,213 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>RegisterUser</servlet-name>
+    <servlet-class>com.java.servlets.RegisterUser</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RegisterUser</servlet-name>
+    <url-pattern>/RegisterUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>WelcomeServlet</servlet-name>
+    <servlet-class>com.java.servlets.WelcomeServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WelcomeServlet</servlet-name>
+    <url-pattern>/WelcomeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UpdateProfile</servlet-name>
+    <servlet-class>com.java.servlets.UpdateProfile</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateProfile</servlet-name>
+    <url-pattern>/UpdateProfile</url-pattern>
+  </servlet-mapping>
+ <servlet>
+    <servlet-name>UserAuth</servlet-name>
+    <servlet-class>com.java.servlets.UserAuth</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserAuth</servlet-name>
+    <url-pattern>/UserAuth</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+    <servlet-name>UserProfile</servlet-name>
+    <servlet-class>com.java.servlets.UserProfile</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserProfile</servlet-name>
+    <url-pattern>/UserProfile</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>PersonalProfile</servlet-name>
+    <servlet-class>com.java.servlets.PersonalProfile</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>PersonalProfile</servlet-name>
+    <url-pattern>/PersonalProfile</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>CollegeInfoServlet</servlet-name>
+    <servlet-class>com.java.servlets.CollegeInfoServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CollegeInfoServlet</servlet-name>
+    <url-pattern>/CollegeInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CreateElectionServlet</servlet-name>
+    <servlet-class>com.java.servlets.CreateElectionServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>CreateElectionServlet</servlet-name>
+    <url-pattern>/CreateElectionServlet</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>ElectionFormTable</servlet-name>
+    <servlet-class>com.java.servlets.ElectionFormTable</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ElectionFormTable</servlet-name>
+    <url-pattern>/ElectionFormTable</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>Message</servlet-name>
+    <servlet-class>com.java.servlets.Message</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Message</servlet-name>
+    <url-pattern>/Message</url-pattern>
+  </servlet-mapping>
+  
+
+  <servlet>
+    <servlet-name>ElectionVoting</servlet-name>
+    <servlet-class>com.java.servlets.ElectionVoting</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ElectionVoting</servlet-name>
+    <url-pattern>/ElectionVoting</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetMessagesServlet</servlet-name>
+    <servlet-class>com.java.servlets.GetMessagesServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>GetMessagesServlet</servlet-name>
+    <url-pattern>/GetMessagesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MyVotesServlet</servlet-name>
+    <servlet-class>com.java.servlets.MyVotesServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>MyVotesServlet</servlet-name>
+    <url-pattern>/MyVotesServlet</url-pattern>
+</servlet-mapping>
+ <servlet>
+        <servlet-name>CreatedElections</servlet-name>
+        <servlet-class>com.java.servlets.CreatedElections</servlet-class>
+    </servlet>
+    
+    <!-- Servlet mapping -->
+    <servlet-mapping>
+        <servlet-name>CreatedElections</servlet-name>
+        <url-pattern>/CreatedElections</url-pattern>
+    </servlet-mapping>
+    
+<servlet>
+    <servlet-name>LiveResultServlet</servlet-name>
+    <servlet-class>com.java.servlets.LiveResultServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>LiveResultServlet</servlet-name>
+    <url-pattern>/LiveResultServlet</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+    <servlet-name>VoteServlet</servlet-name>
+    <servlet-class>com.java.servlets.VoteServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>VoteServlet</servlet-name>
+    <url-pattern>/VoteServlet</url-pattern>
+  </servlet-mapping>
+
+
+<servlet>
+    <servlet-name>VerifyOTPServlet</servlet-name>
+    <servlet-class>com.java.servlets.VerifyOTPServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>VerifyOTPServlet</servlet-name>
+    <url-pattern>/VerifyOTPServlet</url-pattern>
+</servlet-mapping>
+
+  <servlet>
+    <servlet-name>VotePage</servlet-name>
+    <servlet-class>com.java.servlets.VotePage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>VotePage</servlet-name>
+    <url-pattern>/VotePage</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UpdateCollegeInfoServlet</servlet-name>
+    <servlet-class>com.java.servlets.UpdateCollegeInfoServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>UpdateCollegeInfoServlet</servlet-name>
+    <url-pattern>/UpdateCollegeInfoServlet</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>ChangePasswordServlet</servlet-name>
+    <servlet-class>com.java.servlets.ChangePasswordServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>ChangePasswordServlet</servlet-name>
+    <url-pattern>/ChangePasswordServlet</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.java.servlets.Logout</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+</servlet-mapping>
+
+</web-app>
