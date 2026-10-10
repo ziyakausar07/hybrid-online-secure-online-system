@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hybrid Secure Voting System — Documentation</title>
+  <meta name="description" content="Project documentation for Hybrid Secure Voting System — a secure, real-time online voting platform built with React, Node.js, Java Servlets and MySQL." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0d14;
+      --surface:   #111520;
+      --card:      #161b2c;
+      --border:    rgba(99,179,237,0.12);
+      --accent1:   #3b82f6;
+      --accent2:   #8b5cf6;
+      --accent3:   #06b6d4;
+      --green:     #10b981;
+      --amber:     #f59e0b;
+      --red:       #ef4444;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --radius:    14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, rgba(59,130,246,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 90% 100%, rgba(139,92,246,.14) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 100px 0 70px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59,130,246,.12);
+      border: 1px solid rgba(59,130,246,.3);
+      color: #93c5fd;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+      letter-spacing: .5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #e2e8f0 0%, #93c5fd 45%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .pill {
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid;
+    }
+
+    .pill-blue   { background:rgba(59,130,246,.1);  border-color:rgba(59,130,246,.3);  color:#93c5fd; }
+    .pill-purple { background:rgba(139,92,246,.1);  border-color:rgba(139,92,246,.3);  color:#c084fc; }
+    .pill-cyan   { background:rgba(6,182,212,.1);   border-color:rgba(6,182,212,.3);   color:#67e8f9; }
+    .pill-green  { background:rgba(16,185,129,.1);  border-color:rgba(16,185,129,.3);  color:#6ee7b7; }
+    .pill-amber  { background:rgba(245,158,11,.1);  border-color:rgba(245,158,11,.3);  color:#fcd34d; }
+    .pill-red    { background:rgba(239,68,68,.1);   border-color:rgba(239,68,68,.3);   color:#fca5a5; }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 60px 0;
+    }
+
+    .glow-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent1) 50%, transparent 100%);
+      opacity: .35;
+      margin: 4px 0 60px;
+    }
+
+    /* ── Section header ── */
+    .sec-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .sec-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .sec-icon.blue   { background:rgba(59,130,246,.15); }
+    .sec-icon.purple { background:rgba(139,92,246,.15); }
+    .sec-icon.cyan   { background:rgba(6,182,212,.15);  }
+    .sec-icon.green  { background:rgba(16,185,129,.15); }
+
+    .sec-header h2   { font-size:1.6rem; font-weight:700; color:#f1f5f9; }
+    .sec-header p    { font-size:.9rem; color:var(--muted); margin-top:2px; }
+
+    /* ── OVERVIEW ── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) { .overview-grid { grid-template-columns: 1fr; } }
+
+    .ov-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s, transform .25s;
+    }
+
+    .ov-card:hover { border-color:rgba(99,179,237,.3); transform:translateY(-3px); }
+
+    .ov-card::before {
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height:3px;
+      border-radius:3px 3px 0 0;
+    }
+
+    .ov-card.c1::before { background:linear-gradient(90deg,var(--accent1),var(--accent3)); }
+    .ov-card.c2::before { background:linear-gradient(90deg,var(--accent2),var(--accent1)); }
+    .ov-card.c3::before { background:linear-gradient(90deg,var(--accent3),var(--green));  }
+    .ov-card.c4::before { background:linear-gradient(90deg,var(--green),var(--amber));    }
+
+    .ov-num {
+      font-size:2.2rem; font-weight:800; margin-bottom:4px;
+      background:linear-gradient(135deg,#93c5fd,#c084fc);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+
+    .ov-label { font-size:.85rem; color:var(--muted); font-weight:500; text-transform:uppercase; letter-spacing:.8px; }
+
+    .overview-desc {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:32px 36px;
+      font-size:1.05rem;
+      color:#cbd5e1;
+      line-height:1.85;
+      margin-top:20px;
+    }
+
+    .overview-desc strong { color:#e2e8f0; font-weight:600; }
+
+    /* ── TECH STACK ── */
+    .tech-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap:16px;
+    }
+
+    .tech-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px 24px;
+      display:flex;
+      align-items:flex-start;
+      gap:16px;
+      transition:border-color .25s, transform .25s;
+    }
+
+    .tech-card:hover { border-color:rgba(99,179,237,.3); transform:translateY(-2px); }
+
+    .tech-icon {
+      width:42px; height:42px;
+      border-radius:10px;
+      display:grid; place-items:center;
+      font-size:20px;
+      flex-shrink:0;
+    }
+
+    .tech-name { font-weight:600; font-size:.95rem; color:#f1f5f9; margin-bottom:3px; }
+    .tech-role { font-size:.8rem; color:var(--muted); }
+
+    /* ── ARCH FLOW ── */
+    .arch-flow {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:0;
+      margin:10px 0 30px;
+    }
+
+    .arch-node {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:18px 24px;
+      text-align:center;
+      min-width:130px;
+    }
+
+    .arch-node .ico { font-size:26px; margin-bottom:6px; }
+    .arch-node .lbl { font-size:.8rem; font-weight:600; color:#cbd5e1; }
+    .arch-node .sub { font-size:.7rem; color:var(--muted); margin-top:2px; font-family:'JetBrains Mono',monospace; }
+
+    .arch-arrow { font-size:22px; color:var(--muted); padding:0 6px; }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap:20px;
+    }
+
+    .feat-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:26px;
+      transition:border-color .25s, transform .25s;
+    }
+
+    .feat-card:hover { border-color:rgba(99,179,237,.28); transform:translateY(-3px); }
+
+    .feat-head {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .feat-ico {
+      width:38px; height:38px;
+      border-radius:10px;
+      display:grid; place-items:center;
+      font-size:18px;
+      flex-shrink:0;
+    }
+
+    .feat-title { font-weight:700; font-size:1rem; color:#f1f5f9; }
+    .feat-desc  { font-size:.88rem; color:var(--muted); line-height:1.65; }
+
+    /* ── IMPACT ── */
+    .impact-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap:20px;
+    }
+
+    .impact-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:28px;
+      text-align:center;
+      transition:border-color .25s, transform .25s;
+    }
+
+    .impact-card:hover { border-color:rgba(99,179,237,.3); transform:translateY(-3px); }
+
+    .impact-card .big {
+      font-size:2.6rem; font-weight:800; line-height:1; margin-bottom:8px;
+    }
+
+    .impact-card .tag {
+      font-size:.82rem; color:var(--muted); font-weight:500;
+      text-transform:uppercase; letter-spacing:.7px; margin-bottom:12px;
+    }
+
+    .impact-card .desc { font-size:.88rem; color:#94a3b8; line-height:1.6; }
+
+    footer {
+      text-align:center;
+      padding:48px 0 0;
+      color:var(--muted);
+      font-size:.85rem;
+      border-top:1px solid var(--border);
+    }
+
+    footer strong { color:#e2e8f0; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">🗳️ Academic Project Documentation</div>
+    <h1>Hybrid Secure<br/>Voting System</h1>
+    <p class="hero-sub">
+      A full-stack, multi-layer secure online voting platform that combines a
+      React SPA, a Node.js API gateway, and a Java Servlet backend to deliver
+      tamper-resistant, real-time college elections.
+    </p>
+    <div class="hero-pills">
+      <span class="pill pill-blue">React 19</span>
+      <span class="pill pill-amber">Node.js 22</span>
+      <span class="pill pill-red">Java Servlets</span>
+      <span class="pill pill-cyan">Socket.IO</span>
+      <span class="pill pill-green">MySQL 8</span>
+      <span class="pill pill-purple">JWT + OTP Auth</span>
+    </div>
+  </header>
+
+  <div class="glow-line"></div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="sec-header">
+      <div class="sec-icon blue">📋</div>
+      <div>
+        <h2>Overview</h2>
+        <p>What the system is and why it was built</p>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="ov-card c1">
+        <div class="ov-num">3</div>
+        <div class="ov-label">Backend Layers</div>
+      </div>
+      <div class="ov-card c2">
+        <div class="ov-num">22</div>
+        <div class="ov-label">Java Servlets</div>
+      </div>
+      <div class="ov-card c3">
+        <div class="ov-num">15+</div>
+        <div class="ov-label">REST API Routes</div>
+      </div>
+      <div class="ov-card c4">
+        <div class="ov-num">5</div>
+        <div class="ov-label">Database Tables</div>
+      </div>
+    </div>
+
+    <div class="overview-desc">
+      The <strong>Hybrid Secure Voting System</strong> is a web-based college election platform
+      designed to replace paper-based or manual voting processes with a secure, transparent,
+      and real-time digital alternative.
+      <br/><br/>
+      The system follows a <strong>hybrid architecture</strong> — a <strong>React</strong> single-page
+      application talks to a <strong>Node.js Express gateway</strong> which handles authentication,
+      session management, and rate-limiting, then proxies sensitive operations to a
+      <strong>Java Servlet (Tomcat)</strong> backend that owns the core business logic.
+      <strong>MySQL</strong> is the shared data store for users, elections, candidates, votes,
+      and nomination forms.
+      <br/><br/>
+      Real-time vote tallying is broadcast to all connected clients via <strong>Socket.IO</strong>,
+      while <strong>OTP-based email verification</strong> and <strong>JWT tokens</strong> ensure
+      only authenticated, eligible voters can cast a ballot — and only once.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TECH STACK -->
+  <section id="tech">
+    <div class="sec-header">
+      <div class="sec-icon purple">⚙️</div>
+      <div>
+        <h2>Tech Stack</h2>
+        <p>Technologies powering every layer</p>
+      </div>
+    </div>
+
+    <div class="arch-flow">
+      <div class="arch-node">
+        <div class="ico">🌐</div>
+        <div class="lbl">React SPA</div>
+        <div class="sub">:3000</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="ico">🔒</div>
+        <div class="lbl">Node Gateway</div>
+        <div class="sub">:5000</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="ico">☕</div>
+        <div class="lbl">Java Servlets</div>
+        <div class="sub">Tomcat</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="ico">🗄️</div>
+        <div class="lbl">MySQL 8</div>
+        <div class="sub">voting_db</div>
+      </div>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon" style="background:rgba(97,218,251,.12)">⚛️</div>
+        <div>
+          <div class="tech-name">React 19</div>
+          <div class="tech-role">Frontend SPA — React Router v7, Framer Motion animations, Recharts for live graphs</div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon" style="background:rgba(104,211,145,.12)">🟩</div>
+        <div>
+          <div class="tech-name">Node.js + Express</div>
+          <div class="tech-role">API gateway — JWT auth, rate-limiting (100 req/15 min), Helmet headers, CORS whitelist</div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon" style="background:rgba(236,113,20,.12)">☕</div>
+        <div>
+          <div class="tech-name">Java Servlets (Tomcat)</div>
+          <div class="tech-role">Core business logic — 22 servlets: voting, elections, OTP, live results, user management</div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon" style="background:rgba(6,182,212,.12)">🔵</div>
+        <div>
+          <div class="tech-name">MySQL 8</div>
+          <div class="tech-role">Relational DB — InnoDB tables: users, elections, candidates, votes, ElectionForm</div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon" style="background:rgba(139,92,246,.12)">⚡</div>
+        <div>
+          <div class="tech-name">Socket.IO 4</div>
+          <div class="tech-role">WebSocket layer — real-time vote count streaming to all connected clients</div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon" style="background:rgba(245,158,11,.12)">🔑</div>
+        <div>
+          <div class="tech-name">JWT + bcrypt</div>
+          <div class="tech-role">Stateless authentication tokens + secure password hashing via bcryptjs</div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon" style="background:rgba(239,68,68,.12)">📧</div>
+        <div>
+          <div class="tech-name">OTP via Email</div>
+          <div class="tech-role">One-time passwords generated server-side to verify voter identity before casting ballot</div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon" style="background:rgba(16,185,129,.12)">🛡️</div>
+        <div>
+          <div class="tech-name">Helmet + Rate Limiter</div>
+          <div class="tech-role">HTTP security headers and API throttling — prevents XSS, brute-force, and injection attacks</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- KEY FEATURES -->
+  <section id="features">
+    <div class="sec-header">
+      <div class="sec-icon cyan">✨</div>
+      <div>
+        <h2>Key Features</h2>
+        <p>Core capabilities of the platform</p>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-head">
+          <div class="feat-ico" style="background:rgba(239,68,68,.13)">📲</div>
+          <div class="feat-title">OTP-Based Voter Verification</div>
+        </div>
+        <div class="feat-desc">
+          Before casting a ballot, voters receive a one-time password on their registered
+          email. GenerateOTPServlet and VerifyOTPServlet ensure only the rightful account
+          holder can vote — preventing proxy voting and impersonation.
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-head">
+          <div class="feat-ico" style="background:rgba(59,130,246,.13)">🔐</div>
+          <div class="feat-title">JWT Auth and Role-Based Access</div>
+        </div>
+        <div class="feat-desc">
+          Every API request requires a valid JWT. Roles (admin / voter) control access —
+          admins can create elections and view nominations; voters can only vote and view
+          results after casting their ballot.
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-head">
+          <div class="feat-ico" style="background:rgba(6,182,212,.13)">📡</div>
+          <div class="feat-title">Real-Time Live Results</div>
+        </div>
+        <div class="feat-desc">
+          Vote tallies stream live to all connected browsers via Socket.IO WebSockets.
+          A Recharts bar chart updates in real time — no refresh needed. Results are
+          gated: only users who have already voted can see them.
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-head">
+          <div class="feat-ico" style="background:rgba(16,185,129,.13)">🗳️</div>
+          <div class="feat-title">Single-Vote Enforcement</div>
+        </div>
+        <div class="feat-desc">
+          The system checks the votes table before allowing submission. Once a user
+          has voted, all subsequent vote attempts are rejected at the Node gateway —
+          ensuring one-person-one-vote integrity at every layer.
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-head">
+          <div class="feat-ico" style="background:rgba(139,92,246,.13)">🗂️</div>
+          <div class="feat-title">Election Management</div>
+        </div>
+        <div class="feat-desc">
+          Admins create elections with title, description, start/end dates, and voting
+          window duration. Elections auto-expire. Candidates are linked per election
+          via FK constraints, and a nomination form lets students apply to stand.
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-head">
+          <div class="feat-ico" style="background:rgba(245,158,11,.13)">🏫</div>
+          <div class="feat-title">College Profile Management</div>
+        </div>
+        <div class="feat-desc">
+          Voters complete a rich profile — USN, branch, semester, division, department,
+          college email — used to validate eligibility and displayed on the candidate
+          nomination form. Admins can update college info centrally.
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-head">
+          <div class="feat-ico" style="background:rgba(239,68,68,.13)">💬</div>
+          <div class="feat-title">In-App Messaging System</div>
+        </div>
+        <div class="feat-desc">
+          Admins broadcast messages to voters via GetMessagesServlet. Voters receive
+          and read message threads in the dashboard — keeping all election communications
+          inside the platform with no need for external email.
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-head">
+          <div class="feat-ico" style="background:rgba(59,130,246,.13)">🛡️</div>
+          <div class="feat-title">Multi-Layer Security</div>
+        </div>
+        <div class="feat-desc">
+          Helmet enforces strict HTTP headers. Rate limiter blocks abuse (100 req /
+          15 min). Sessions expire in 15 minutes. Passwords are bcrypt-hashed.
+          CORS allows only whitelisted origins. JSON body size capped at 10 KB.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- OUTCOME / IMPACT -->
+  <section id="impact">
+    <div class="sec-header">
+      <div class="sec-icon green">🚀</div>
+      <div>
+        <h2>Outcome &amp; Impact</h2>
+        <p>What this system achieves and delivers</p>
+      </div>
+    </div>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="big" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">100%</div>
+        <div class="tag">Digital Transition</div>
+        <div class="desc">Fully replaces manual paper-ballot college elections — zero physical ballot required.</div>
+      </div>
+      <div class="impact-card">
+        <div class="big" style="background:linear-gradient(135deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">0</div>
+        <div class="tag">Double Votes Possible</div>
+        <div class="desc">Database-level and API-level enforcement ensures each voter can cast exactly one ballot.</div>
+      </div>
+      <div class="impact-card">
+        <div class="big" style="background:linear-gradient(135deg,#10b981,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Live</div>
+        <div class="tag">Results Transparency</div>
+        <div class="desc">WebSocket streaming delivers instant vote count updates — voters see results the moment votes are cast.</div>
+      </div>
+      <div class="impact-card">
+        <div class="big" style="background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">OTP</div>
+        <div class="tag">Identity Verified</div>
+        <div class="desc">Email OTP prevents proxy voting — only the real account holder can authenticate and vote.</div>
+      </div>
+      <div class="impact-card">
+        <div class="big" style="background:linear-gradient(135deg,#06b6d4,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">3-Tier</div>
+        <div class="tag">Architecture</div>
+        <div class="desc">Separation of concerns across React, Node.js, and Java Servlets makes the system scalable and maintainable.</div>
+      </div>
+      <div class="impact-card">
+        <div class="big" style="background:linear-gradient(135deg,#10b981,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Full</div>
+        <div class="tag">Stack Demonstration</div>
+        <div class="desc">Demonstrates expertise across React, REST APIs, Java EE Servlets, MySQL, WebSockets, and security — all in one project.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <footer>
+    <p><strong>Hybrid Secure Voting System</strong> &nbsp;·&nbsp; Academic Project</p>
+    <p style="margin-top:8px">React · Node.js · Java Servlets · MySQL · Socket.IO · JWT</p>
+  </footer>
+
+</div>
+</body>
+</html>

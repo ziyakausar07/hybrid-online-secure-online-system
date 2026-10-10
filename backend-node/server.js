@@ -37,14 +37,16 @@ const results = require("./routes/results");
 
 const app = express();
 const server = http.createServer(app);
+const checkOrigin = (origin, callback) => {
+  if (!origin || ALLOWED_ORIGINS.includes("*") || ALLOWED_ORIGINS.includes(origin)) {
+    return callback(null, true);
+  }
+  return callback(new Error("CORS origin not allowed"));
+};
+
 const io = new Server(server, {
   cors: {
-    origin: (origin, callback) => {
-      if (!origin || ALLOWED_ORIGINS.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error("CORS origin not allowed"));
-    },
+    origin: checkOrigin,
     methods: ["GET", "POST"],
   },
 });
@@ -73,12 +75,7 @@ app.use("/api", limiter);
 // ✅ Middleware setup
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || ALLOWED_ORIGINS.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error("CORS origin not allowed"));
-    },
+    origin: checkOrigin,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
