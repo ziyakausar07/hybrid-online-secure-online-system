@@ -1,6 +1,6 @@
 // React Frontend (ElectionFormTable.js)
 import React, { useEffect, useState } from "react";
-import { API_BASE_URL, WS_URL } from "../apiConfig";
+import { API_BASE_URL } from "../apiConfig";
 import "./ElectionFormTable.css";
 const ElectionFormTable = () => {
     const [candidates, setCandidates] = useState([]);

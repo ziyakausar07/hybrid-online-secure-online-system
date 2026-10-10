@@ -101,6 +101,7 @@ const ElectionForm = () => {
             <option value="Treasurer">Treasurer</option>
         </select>
   
+    {message && <p style={{ marginTop: "10px", color: message.startsWith("❌") ? "#ff4d4f" : "#52c41a" }}>{message}</p>}
     <button type="submit" className="save-btn">Submit</button>
 </form>
 
